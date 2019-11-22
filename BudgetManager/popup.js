@@ -1,4 +1,8 @@
 $(function(){
+  //anytime they open the popup the total is displayed
+  chrome.storage.sync.get('total', function(budget){
+    $('#total').text(budget.total)
+  })
   //When user click on spend amount button
   $('#spendAmount').click(function(){
     //if a total exisits add this value to the total
@@ -13,7 +17,7 @@ $(function(){
         newTotal += parseInt(amount)
       }
 
-      // Update the chrome storage 
+      // Update the chrome storage
       chrome.storage.sync.set({'total': newTotal})
 
       $('#total').text(newTotal)
